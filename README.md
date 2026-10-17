@@ -18,7 +18,7 @@ boundary, and only after the 2026-10-16 leak screen is cleared.
 
 ## 2. Fine-tune (GPU)
 
-    pip install "unsloth[cu124-torch250]" datasets pillow
+    pip install -c <(echo torch==$(python -c "import torch;print(torch.__version__.split('+')[0])")) unsloth unsloth_zoo trl datasets pillow   # never let pip change torch
     python training/finetune_qwen25vl_qlora.py --data D:\draftfm-train --out D:\draftfm-run1 --max-rows 2000   # smoke
     python training/finetune_qwen25vl_qlora.py --data D:\draftfm-train --out D:\draftfm-run1                   # full
 

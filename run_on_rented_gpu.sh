@@ -15,8 +15,15 @@ nvidia-smi --query-gpu=name,memory.total --format=csv
 # Keep the image's own torch/CUDA build: no torch pin, no extras (the cu124-torch250 extra downgraded
 # torch 2.8->2.5 and broke torchao on the first run, 2026-10-17).
 python -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda)"
-pip install -q --upgrade --upgrade-strategy only-if-needed unsloth unsloth_zoo trl datasets pillow
-python -c "import unsloth, torch; print('unsloth', unsloth.__version__, 'torch', torch.__version__)"
+# Pin torch/torchvision to the versions already installed so no dependency can swap them, and drop
+# packages that a previous attempt may have left pinned to another torch (xformers, torchao).
+TORCH_VER=$(python -c "import torch; print(torch.__version__.split('+')[0])")
+TV_VER=$(python -c "import torchvision; print(torchvision.__version__.split('+')[0])" 2>/dev/null || true)
+printf 'torch==%s\n' "$TORCH_VER" > /tmp/draftfm-constraints.txt
+[ -n "$TV_VER" ] && printf 'torchvision==%s\n' "$TV_VER" >> /tmp/draftfm-constraints.txt
+pip uninstall -y -q xformers torchao 2>/dev/null || true
+pip install -q --upgrade --upgrade-strategy only-if-needed -c /tmp/draftfm-constraints.txt unsloth unsloth_zoo trl datasets pillow
+python -c "import unsloth, torch; print('unsloth', unsloth.__version__, 'torch', torch.__version__); assert torch.__version__.startswith('$TORCH_VER'), 'torch was changed by pip'"
 python finetune_qwen25vl_qlora.py --data "$DATA" --out results --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
 # GGUF for Ollama
 [ -d llama.cpp ] || git clone --depth 1 https://github.com/ggml-org/llama.cpp

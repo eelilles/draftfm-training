@@ -9,7 +9,7 @@ Hardware: needs a CUDA GPU with >= 12 GB VRAM for the 3B model at 4-bit
 this. UNTESTED on real hardware as of 2026-10-16 -- it is the standard Unsloth
 recipe with DraftFM's data contract wired in; the first run is the test.
 
-    pip install "unsloth[cu124-torch250]" datasets pillow
+    pip install -c <(echo torch==$(python -c "import torch;print(torch.__version__.split('+')[0])")) unsloth unsloth_zoo trl datasets pillow   # never let pip change torch
     python training/finetune_qwen25vl_qlora.py --data D:/draftfm-train --out D:/draftfm-run1
 """
 
