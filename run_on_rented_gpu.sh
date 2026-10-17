@@ -12,11 +12,19 @@ if [ ! -d "$DATA" ]; then
   fi
 fi
 nvidia-smi --query-gpu=name,memory.total --format=csv
-pip install -q "unsloth[cu124-torch250]" datasets pillow trl
+# Keep the image's own torch/CUDA build: no torch pin, no extras (the cu124-torch250 extra downgraded
+# torch 2.8->2.5 and broke torchao on the first run, 2026-10-17).
+python -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda)"
+pip install -q --upgrade --upgrade-strategy only-if-needed unsloth unsloth_zoo trl datasets pillow
+python -c "import unsloth, torch; print('unsloth', unsloth.__version__, 'torch', torch.__version__)"
 python finetune_qwen25vl_qlora.py --data "$DATA" --out results --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
 # GGUF for Ollama
 [ -d llama.cpp ] || git clone --depth 1 https://github.com/ggml-org/llama.cpp
 pip install -q -r llama.cpp/requirements/requirements-convert_hf_to_gguf.txt
-python llama.cpp/convert_hf_to_gguf.py results/merged-16bit --outfile results/draftfm-3b.gguf --outtype q8_0
+# Text weights + the vision projector (Qwen2.5-VL needs both for Ollama). Non-fatal: merged-16bit is the
+# deliverable; GGUF is a convenience.
+python llama.cpp/convert_hf_to_gguf.py results/merged-16bit --outfile results/draftfm-3b.gguf --outtype q8_0 \
+  && python llama.cpp/convert_hf_to_gguf.py results/merged-16bit --mmproj --outfile results/draftfm-3b-mmproj.gguf \
+  || echo "WARNING: GGUF conversion failed; results/merged-16bit (safetensors) is still complete"
 ls -la results
 echo "Done. Download results/ then: ollama create draftfm-3b -f Modelfile  (with draftfm-3b.gguf beside it)"
