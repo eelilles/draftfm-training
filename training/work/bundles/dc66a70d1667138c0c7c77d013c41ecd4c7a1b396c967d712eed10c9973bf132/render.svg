@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1169" height="1654" viewBox="0 0 1169 1654" data-renderer="draftfm-render/1">
+<rect width="1169" height="1654" fill="#ffffff"/>
+<g fill="none" stroke="#000000" stroke-width="1">
+<g id="LINE:1">
+<path d="M39.37 1178.14 L39.37 297.54"/>
+</g>
+<g id="LINE:2">
+<path d="M626.43 1178.14 L626.43 297.54"/>
+</g>
+<g id="INSERT:1">
+<path d="M133.21 1076.29 L141.21 1084.29 M133.21 1084.29 L141.21 1076.29"/>
+</g>
+<g id="INSERT:2">
+<path d="M524.59 1076.29 L532.59 1084.29 M524.59 1084.29 L532.59 1076.29"/>
+</g>
+<g id="TEXT:1">
+<text x="137.21" y="1060.72" font-family="monospace" font-size="19.57" textLength="83.87" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">24x24</text>
+</g>
+<g id="TEXT:2">
+<text x="528.59" y="1060.72" font-family="monospace" font-size="19.57" textLength="83.87" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">30x30</text>
+</g>
+<g id="DIMENSION:1">
+<path d="M39.37 1178.14 L39.37 1207.49"/>
+<path d="M626.43 1178.14 L626.43 1207.49"/>
+<path d="M39.37 1207.49 L626.43 1207.49"/>
+<text x="311.94" y="1204.43" font-family="monospace" font-size="12.23" textLength="41.93" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">6000</text>
+</g>
+<g id="MTEXT:1">
+<text x="39.37" y="273.08" font-family="monospace" font-size="24.46" textLength="1090.26" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">GENERAL NOTES: CONFIRM ALL FOOTING SIZES AGAINST THE</text>
+<text x="39.37" y="313.85" font-family="monospace" font-size="24.46" textLength="188.70" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SCHEDULE.</text>
+</g>
+<g id="INSERT:3">
+<path d="M35.37 1271.98 L43.37 1279.98 M35.37 1279.98 L43.37 1271.98"/>
+</g>
+<g id="ATTRIB:1">
+<text x="39.37" y="1266.20" font-family="monospace" font-size="14.68" textLength="251.60" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">FAKECORP WIDGETS INC</text>
+</g>
+<g id="ATTRIB:2">
+<text x="39.37" y="1285.77" font-family="monospace" font-size="14.68" textLength="452.88" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">999 FAKE TESTING LANE, NOWHERESVILLE</text>
+</g>
+<g id="ATTRIB:3">
+<text x="39.37" y="1305.33" font-family="monospace" font-size="14.68" textLength="176.12" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">JOB-FAKE-00042</text>
+</g>
+<g id="ATTRIB:4">
+<text x="39.37" y="1324.90" font-family="monospace" font-size="14.68" textLength="239.02" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">J. FAKEDRAFTSPERSON</text>
+</g>
+<g id="ATTRIB:5">
+<text x="39.37" y="1344.47" font-family="monospace" font-size="14.68" textLength="188.70" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">K. FAKEREVIEWER</text>
+</g>
+<g id="ATTRIB:6">
+<text x="39.37" y="1383.61" font-family="monospace" font-size="14.68" textLength="289.34" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">TYPICAL FOUNDATION PLAN</text>
+</g>
+<g id="ATTRIB:7">
+<text x="39.37" y="1403.18" font-family="monospace" font-size="14.68" textLength="62.90" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">S2.01</text>
+</g>
+</g></svg>

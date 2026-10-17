@@ -1,0 +1,1 @@
+[{"answer":{"bbox_px":[196.9,495.89,433.19,518.54]},"item_id":"4da0706b14eaeb05c400","meta":{"entity":"TEXT:1"},"prompt":"Give the pixel bounding box (x0 y0 x1 y1) of the text reading 'SYNTHETIC PLAN'.","query":{"text":"SYNTHETIC PLAN"},"source_id":"1eea97eae663cdce7ddf95d110bdc744c1bed5621ed4b4c53500686869fcd02d","task_type":"text_localisation"}]

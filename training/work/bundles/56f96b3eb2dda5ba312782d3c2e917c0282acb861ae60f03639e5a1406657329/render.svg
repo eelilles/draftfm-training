@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1654" height="1169" viewBox="0 0 1654 1169" data-renderer="draftfm-render/1">
+<rect width="1654" height="1169" fill="#ffffff"/>
+<g fill="none" stroke="#000000" stroke-width="1">
+<g id="LINE:1">
+<path d="M67.33 866.11 L67.33 301.01"/>
+</g>
+<g id="LINE:2">
+<path d="M444.06 866.11 L444.06 301.01"/>
+</g>
+<g id="LINE:3">
+<path d="M67.33 866.11 L444.06 866.11"/>
+</g>
+<g id="LINE:4">
+<path d="M67.33 301.01 L444.06 301.01"/>
+</g>
+<g id="INSERT:1">
+<path d="M63.33 862.11 L71.33 870.11 M63.33 870.11 L71.33 862.11"/>
+</g>
+<g id="INSERT:2">
+<path d="M440.06 862.11 L448.06 870.11 M440.06 870.11 L448.06 862.11"/>
+</g>
+<g id="INSERT:3">
+<path d="M126.12 799.32 L134.12 807.32 M126.12 807.32 L134.12 799.32"/>
+</g>
+<g id="INSERT:4">
+<path d="M377.28 799.32 L385.28 807.32 M377.28 807.32 L385.28 799.32"/>
+</g>
+<g id="INSERT:5">
+<path d="M126.12 359.80 L134.12 367.80 M126.12 367.80 L134.12 359.80"/>
+</g>
+<g id="TEXT:1">
+<text x="130.12" y="790.76" font-family="monospace" font-size="12.56" textLength="53.82" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">24x24</text>
+</g>
+<g id="TEXT:2">
+<text x="1009.17" y="834.71" font-family="monospace" font-size="12.56" textLength="53.82" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">24x24</text>
+</g>
+<g id="TEXT:3">
+<text x="130.12" y="351.24" font-family="monospace" font-size="12.56" textLength="53.82" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">30x30</text>
+</g>
+<g id="TEXT:4">
+<text x="1009.17" y="822.16" font-family="monospace" font-size="12.56" textLength="53.82" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">30x30</text>
+</g>
+<g id="TEXT:5">
+<text x="67.33" y="897.50" font-family="monospace" font-size="12.56" textLength="441.32" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SYNTHETIC FOUNDATION PLAN - BVES TEMPLATE</text>
+</g>
+<g id="MTEXT:1">
+<text x="820.80" y="285.31" font-family="monospace" font-size="15.70" textLength="793.83" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">GENERAL NOTES: 1. ALL FOOTING SIZES SHOWN ARE SCHEDULED AND</text>
+<text x="820.80" y="311.47" font-family="monospace" font-size="15.70" textLength="780.38" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SHALL BE CONFIRMED AGAINST THE STRUCTURAL FOOTING SCHEDULE</text>
+<text x="820.80" y="337.63" font-family="monospace" font-size="15.70" textLength="740.01" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">PRIOR TO FORMWORK. 2. GRID LINES SHOWN ARE FOR LOCATION</text>
+<text x="820.80" y="363.80" font-family="monospace" font-size="15.70" textLength="726.56" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">REFERENCE ONLY AND ARE NOT TO BE USED FOR FOOTING SIZE</text>
+<text x="820.80" y="389.96" font-family="monospace" font-size="15.70" textLength="699.65" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">TAKEOFF. 3. DO NOT SCALE DRAWING. 4. THIS SHEET IS A</text>
+<text x="820.80" y="416.12" font-family="monospace" font-size="15.70" textLength="713.10" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SYNTHETIC FIXTURE AND DOES NOT DEPICT A REAL PROJECT.</text>
+</g>
+<g id="DIMENSION:1">
+<path d="M67.33 866.11 L67.33 884.95"/>
+<path d="M444.06 866.11 L444.06 884.95"/>
+<path d="M67.33 884.95 L444.06 884.95"/>
+<text x="243.18" y="883.12" font-family="monospace" font-size="7.30" textLength="25.03" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">6000</text>
+</g>
+<g id="DIMENSION:2">
+<path d="M67.33 866.11 L48.49 866.11"/>
+<path d="M67.33 301.01 L48.49 301.01"/>
+<path d="M48.49 866.11 L48.49 301.01"/>
+<text x="46.67" y="596.07" font-family="monospace" font-size="7.30" textLength="25.03" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none" transform="rotate(-90.0000 46.67 596.07)">9000</text>
+</g>
+<g id="ARC:1">
+<path d="M139.54 803.32 L139.50 802.50 L139.39 801.68 L139.22 800.88 L138.97 800.10 L138.66 799.34 L138.28 798.61 L137.83 797.92 L137.33 797.27 L136.78 796.66 L136.17 796.10 L135.52 795.60 L134.83 795.16 L134.10 794.78 L133.34 794.47 L132.56 794.22 L131.76 794.04 L130.94 793.94 L130.12 793.90"/>
+</g>
+</g></svg>

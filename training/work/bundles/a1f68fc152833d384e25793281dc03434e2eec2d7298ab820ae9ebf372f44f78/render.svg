@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1654" height="1169" viewBox="0 0 1654 1169" data-renderer="draftfm-render/1">
+<rect width="1654" height="1169" fill="#ffffff"/>
+<g fill="none" stroke="#000000" stroke-width="1">
+<g id="LINE:1">
+<path d="M39.37 834.16 L39.37 272.12"/>
+</g>
+<g id="LINE:2">
+<path d="M39.37 834.16 L414.06 834.16"/>
+</g>
+<g id="INSERT:1">
+<path d="M35.37 830.16 L43.37 838.16 M35.37 838.16 L43.37 830.16"/>
+</g>
+<g id="TEXT:1">
+<text x="45.61" y="827.91" font-family="monospace" font-size="7.03" textLength="30.11" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">24x24</text>
+</g>
+<g id="MTEXT:1">
+<text x="476.51" y="834.94" font-family="monospace" font-size="7.03" textLength="150.55" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SYNTHETIC FOUNDATION PLAN</text>
+</g>
+<g id="MTEXT:2">
+<text x="476.51" y="828.69" font-family="monospace" font-size="7.03" textLength="120.44" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">FAKECORP WIDGETS INC</text>
+</g>
+<g id="MTEXT:3">
+<text x="476.51" y="822.45" font-family="monospace" font-size="7.03" textLength="355.29" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SYNTHETIC LONG TITLE-BLOCK FIELD CHUNK FOR FAKECORP WIDGETS</text>
+<text x="476.51" y="834.16" font-family="monospace" font-size="7.03" textLength="18.07" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">INC</text>
+<text x="476.51" y="845.87" font-family="monospace" font-size="7.03" textLength="1138.12" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX999</text>
+<text x="476.51" y="857.57" font-family="monospace" font-size="7.03" textLength="192.70" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">FAKE TESTING LANE, NOWHERESVILLE</text>
+</g>
+<g id="TEXT:2">
+<text x="476.51" y="809.18" font-family="monospace" font-size="7.03" textLength="84.31" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">JOB-FAKE-00042</text>
+</g>
+<g id="MULTILEADER:1">
+<text x="476.51" y="809.96" font-family="monospace" font-size="7.03" textLength="168.61" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">DRAWN BY:J. FAKEDRAFTSPERSON</text>
+</g>
+<g id="MTEXT:4">
+<text x="476.51" y="803.71" font-family="monospace" font-size="7.03" textLength="24.09" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">1:50</text>
+</g>
+<g id="MTEXT:5">
+<text x="39.37" y="872.41" font-family="monospace" font-size="7.03" textLength="349.26" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">GENERAL NOTES: 1. ALL FOOTING SIZES ARE SCHEDULED. 2. THIS</text>
+<text x="39.37" y="884.12" font-family="monospace" font-size="7.03" textLength="355.29" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SHEET IS A SYNTHETIC FIXTURE. 3. CONFIRM GRID WITH FAKECORP</text>
+<text x="39.37" y="895.82" font-family="monospace" font-size="7.03" textLength="180.65" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">WIDGETS INC PRIOR TO FORMWORK.</text>
+</g>
+<g id="DIMENSION:1">
+<path d="M39.37 834.16 L39.37 834.16"/>
+<path d="M414.06 834.16 L414.06 834.16"/>
+<path d="M39.37 834.16 L414.06 834.16"/>
+<text x="214.67" y="832.40" font-family="monospace" font-size="7.03" textLength="24.09" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">6000</text>
+</g>
+</g></svg>

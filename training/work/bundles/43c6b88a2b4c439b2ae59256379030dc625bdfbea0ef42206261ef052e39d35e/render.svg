@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1654" height="1169" viewBox="0 0 1654 1169" data-renderer="draftfm-render/1">
+<rect width="1654" height="1169" fill="#ffffff"/>
+<g fill="none" stroke="#000000" stroke-width="1">
+<g id="LINE:1" data-handle="103">
+<path d="M150.45 993.46 L150.45 84.66"/>
+</g>
+<g id="CIRCLE:1" data-handle="104">
+<path d="M168.12 66.99 L168.05 65.45 L167.85 63.92 L167.52 62.41 L167.05 60.94 L166.46 59.52 L165.75 58.15 L164.92 56.85 L163.98 55.63 L162.94 54.49 L161.80 53.45 L160.58 52.51 L159.28 51.68 L157.91 50.97 L156.49 50.38 L155.02 49.92 L153.51 49.58 L151.99 49.38 L150.45 49.32 L148.91 49.38 L147.38 49.58 L145.87 49.92 L144.40 50.38 L142.98 50.97 L141.61 51.68 L140.31 52.51 L139.09 53.45 L137.95 54.49 L136.91 55.63 L135.97 56.85 L135.14 58.15 L134.43 59.52 L133.84 60.94 L133.38 62.41 L133.04 63.92 L132.84 65.45 L132.77 66.99 L132.84 68.53 L133.04 70.06 L133.38 71.56 L133.84 73.03 L134.43 74.45 L135.14 75.82 L135.97 77.12 L136.91 78.35 L137.95 79.48 L139.09 80.52 L140.31 81.46 L141.61 82.29 L142.98 83.00 L144.40 83.59 L145.87 84.06 L147.38 84.39 L148.91 84.59 L150.45 84.66 L151.99 84.59 L153.51 84.39 L155.02 84.06 L156.49 83.59 L157.91 83.00 L159.28 82.29 L160.58 81.46 L161.80 80.52 L162.94 79.48 L163.98 78.35 L164.92 77.12 L165.75 75.82 L166.46 74.45 L167.05 73.03 L167.52 71.56 L167.85 70.06 L168.05 68.53 L168.12 66.99"/>
+</g>
+<g id="TEXT:1" data-handle="105">
+<text x="143.98" y="74.56" font-family="monospace" font-size="15.15" textLength="12.98" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">1</text>
+</g>
+<g id="LINE:2" data-handle="106">
+<path d="M453.38 993.46 L453.38 84.66"/>
+</g>
+<g id="CIRCLE:2" data-handle="107">
+<path d="M471.05 66.99 L470.98 65.45 L470.78 63.92 L470.45 62.41 L469.99 60.94 L469.40 59.52 L468.68 58.15 L467.86 56.85 L466.92 55.63 L465.88 54.49 L464.74 53.45 L463.52 52.51 L462.22 51.68 L460.85 50.97 L459.42 50.38 L457.95 49.92 L456.45 49.58 L454.92 49.38 L453.38 49.32 L451.84 49.38 L450.31 49.58 L448.81 49.92 L447.34 50.38 L445.91 50.97 L444.55 51.68 L443.24 52.51 L442.02 53.45 L440.89 54.49 L439.84 55.63 L438.91 56.85 L438.08 58.15 L437.37 59.52 L436.78 60.94 L436.31 62.41 L435.98 63.92 L435.78 65.45 L435.71 66.99 L435.78 68.53 L435.98 70.06 L436.31 71.56 L436.78 73.03 L437.37 74.45 L438.08 75.82 L438.91 77.12 L439.84 78.35 L440.89 79.48 L442.02 80.52 L443.24 81.46 L444.55 82.29 L445.91 83.00 L447.34 83.59 L448.81 84.06 L450.31 84.39 L451.84 84.59 L453.38 84.66 L454.92 84.59 L456.45 84.39 L457.95 84.06 L459.42 83.59 L460.85 83.00 L462.22 82.29 L463.52 81.46 L464.74 80.52 L465.88 79.48 L466.92 78.35 L467.86 77.12 L468.68 75.82 L469.40 74.45 L469.99 73.03 L470.45 71.56 L470.78 70.06 L470.98 68.53 L471.05 66.99"/>
+</g>
+<g id="TEXT:2" data-handle="108">
+<text x="446.92" y="74.56" font-family="monospace" font-size="15.15" textLength="12.98" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">2</text>
+</g>
+<g id="LINE:3" data-handle="109">
+<path d="M705.83 993.46 L705.83 84.66"/>
+</g>
+<g id="CIRCLE:3" data-handle="10A">
+<path d="M723.50 66.99 L723.43 65.45 L723.23 63.92 L722.90 62.41 L722.43 60.94 L721.84 59.52 L721.13 58.15 L720.30 56.85 L719.36 55.63 L718.32 54.49 L717.18 53.45 L715.96 52.51 L714.66 51.68 L713.29 50.97 L711.87 50.38 L710.40 49.92 L708.89 49.58 L707.37 49.38 L705.83 49.32 L704.29 49.38 L702.76 49.58 L701.25 49.92 L699.78 50.38 L698.36 50.97 L696.99 51.68 L695.69 52.51 L694.47 53.45 L693.33 54.49 L692.29 55.63 L691.35 56.85 L690.52 58.15 L689.81 59.52 L689.22 60.94 L688.76 62.41 L688.42 63.92 L688.22 65.45 L688.15 66.99 L688.22 68.53 L688.42 70.06 L688.76 71.56 L689.22 73.03 L689.81 74.45 L690.52 75.82 L691.35 77.12 L692.29 78.35 L693.33 79.48 L694.47 80.52 L695.69 81.46 L696.99 82.29 L698.36 83.00 L699.78 83.59 L701.25 84.06 L702.76 84.39 L704.29 84.59 L705.83 84.66 L707.37 84.59 L708.89 84.39 L710.40 84.06 L711.87 83.59 L713.29 83.00 L714.66 82.29 L715.96 81.46 L717.18 80.52 L718.32 79.48 L719.36 78.35 L720.30 77.12 L721.13 75.82 L721.84 74.45 L722.43 73.03 L722.90 71.56 L723.23 70.06 L723.43 68.53 L723.50 66.99"/>
+</g>
+<g id="TEXT:3" data-handle="10B">
+<text x="699.36" y="74.56" font-family="monospace" font-size="15.15" textLength="12.98" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">3</text>
+</g>
+<g id="LINE:4" data-handle="10C">
+<path d="M907.78 993.46 L907.78 84.66"/>
+</g>
+<g id="CIRCLE:4" data-handle="10D">
+<path d="M925.45 66.99 L925.39 65.45 L925.19 63.92 L924.85 62.41 L924.39 60.94 L923.80 59.52 L923.09 58.15 L922.26 56.85 L921.32 55.63 L920.28 54.49 L919.14 53.45 L917.92 52.51 L916.62 51.68 L915.25 50.97 L913.83 50.38 L912.36 49.92 L910.85 49.58 L909.32 49.38 L907.78 49.32 L906.24 49.38 L904.71 49.58 L903.21 49.92 L901.74 50.38 L900.31 50.97 L898.95 51.68 L897.65 52.51 L896.42 53.45 L895.29 54.49 L894.25 55.63 L893.31 56.85 L892.48 58.15 L891.77 59.52 L891.18 60.94 L890.71 62.41 L890.38 63.92 L890.18 65.45 L890.11 66.99 L890.18 68.53 L890.38 70.06 L890.71 71.56 L891.18 73.03 L891.77 74.45 L892.48 75.82 L893.31 77.12 L894.25 78.35 L895.29 79.48 L896.42 80.52 L897.65 81.46 L898.95 82.29 L900.31 83.00 L901.74 83.59 L903.21 84.06 L904.71 84.39 L906.24 84.59 L907.78 84.66 L909.32 84.59 L910.85 84.39 L912.36 84.06 L913.83 83.59 L915.25 83.00 L916.62 82.29 L917.92 81.46 L919.14 80.52 L920.28 79.48 L921.32 78.35 L922.26 77.12 L923.09 75.82 L923.80 74.45 L924.39 73.03 L924.85 71.56 L925.19 70.06 L925.39 68.53 L925.45 66.99"/>
+</g>
+<g id="TEXT:4" data-handle="10E">
+<text x="901.32" y="74.56" font-family="monospace" font-size="15.15" textLength="12.98" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">4</text>
+</g>
+<g id="LINE:5" data-handle="10F">
+<path d="M74.71 917.73 L983.52 917.73"/>
+</g>
+<g id="CIRCLE:5" data-handle="110">
+<path d="M74.71 917.73 L74.65 916.19 L74.44 914.66 L74.11 913.15 L73.65 911.68 L73.06 910.26 L72.34 908.89 L71.52 907.59 L70.58 906.37 L69.54 905.23 L68.40 904.19 L67.18 903.25 L65.88 902.42 L64.51 901.71 L63.09 901.12 L61.61 900.66 L60.11 900.33 L58.58 900.12 L57.04 900.06 L55.50 900.12 L53.97 900.33 L52.47 900.66 L51.00 901.12 L49.57 901.71 L48.21 902.42 L46.91 903.25 L45.68 904.19 L44.55 905.23 L43.50 906.37 L42.57 907.59 L41.74 908.89 L41.03 910.26 L40.44 911.68 L39.97 913.15 L39.64 914.66 L39.44 916.19 L39.37 917.73 L39.44 919.27 L39.64 920.80 L39.97 922.30 L40.44 923.77 L41.03 925.20 L41.74 926.56 L42.57 927.86 L43.50 929.09 L44.55 930.22 L45.68 931.26 L46.91 932.20 L48.21 933.03 L49.57 933.74 L51.00 934.33 L52.47 934.80 L53.97 935.13 L55.50 935.33 L57.04 935.40 L58.58 935.33 L60.11 935.13 L61.61 934.80 L63.09 934.33 L64.51 933.74 L65.88 933.03 L67.18 932.20 L68.40 931.26 L69.54 930.22 L70.58 929.09 L71.52 927.86 L72.34 926.56 L73.06 925.20 L73.65 923.77 L74.11 922.30 L74.44 920.80 L74.65 919.27 L74.71 917.73"/>
+</g>
+<g id="TEXT:5" data-handle="111">
+<text x="50.58" y="925.30" font-family="monospace" font-size="15.15" textLength="12.98" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">A</text>
+</g>
+<g id="LINE:6" data-handle="112">
+<path d="M74.71 715.77 L983.52 715.77"/>
+</g>
+<g id="CIRCLE:6" data-handle="113">
+<path d="M74.71 715.77 L74.65 714.23 L74.44 712.70 L74.11 711.20 L73.65 709.73 L73.06 708.30 L72.34 706.94 L71.52 705.64 L70.58 704.41 L69.54 703.28 L68.40 702.23 L67.18 701.30 L65.88 700.47 L64.51 699.76 L63.09 699.17 L61.61 698.70 L60.11 698.37 L58.58 698.17 L57.04 698.10 L55.50 698.17 L53.97 698.37 L52.47 698.70 L51.00 699.17 L49.57 699.76 L48.21 700.47 L46.91 701.30 L45.68 702.23 L44.55 703.28 L43.50 704.41 L42.57 705.64 L41.74 706.94 L41.03 708.30 L40.44 709.73 L39.97 711.20 L39.64 712.70 L39.44 714.23 L39.37 715.77 L39.44 717.31 L39.64 718.84 L39.97 720.35 L40.44 721.82 L41.03 723.24 L41.74 724.61 L42.57 725.91 L43.50 727.13 L44.55 728.27 L45.68 729.31 L46.91 730.25 L48.21 731.08 L49.57 731.79 L51.00 732.38 L52.47 732.84 L53.97 733.17 L55.50 733.38 L57.04 733.44 L58.58 733.38 L60.11 733.17 L61.61 732.84 L63.09 732.38 L64.51 731.79 L65.88 731.08 L67.18 730.25 L68.40 729.31 L69.54 728.27 L70.58 727.13 L71.52 725.91 L72.34 724.61 L73.06 723.24 L73.65 721.82 L74.11 720.35 L74.44 718.84 L74.65 717.31 L74.71 715.77"/>
+</g>
+<g id="TEXT:6" data-handle="114">
+<text x="50.58" y="723.35" font-family="monospace" font-size="15.15" textLength="12.98" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">B</text>
+</g>
+<g id="LINE:7" data-handle="115">
+<path d="M74.71 463.33 L983.52 463.33"/>
+</g>
+<g id="CIRCLE:7" data-handle="116">
+<path d="M74.71 463.33 L74.65 461.79 L74.44 460.26 L74.11 458.75 L73.65 457.28 L73.06 455.86 L72.34 454.49 L71.52 453.19 L70.58 451.97 L69.54 450.83 L68.40 449.79 L67.18 448.85 L65.88 448.02 L64.51 447.31 L63.09 446.72 L61.61 446.26 L60.11 445.92 L58.58 445.72 L57.04 445.65 L55.50 445.72 L53.97 445.92 L52.47 446.26 L51.00 446.72 L49.57 447.31 L48.21 448.02 L46.91 448.85 L45.68 449.79 L44.55 450.83 L43.50 451.97 L42.57 453.19 L41.74 454.49 L41.03 455.86 L40.44 457.28 L39.97 458.75 L39.64 460.26 L39.44 461.79 L39.37 463.33 L39.44 464.87 L39.64 466.39 L39.97 467.90 L40.44 469.37 L41.03 470.79 L41.74 472.16 L42.57 473.46 L43.50 474.68 L44.55 475.82 L45.68 476.86 L46.91 477.80 L48.21 478.63 L49.57 479.34 L51.00 479.93 L52.47 480.40 L53.97 480.73 L55.50 480.93 L57.04 481.00 L58.58 480.93 L60.11 480.73 L61.61 480.40 L63.09 479.93 L64.51 479.34 L65.88 478.63 L67.18 477.80 L68.40 476.86 L69.54 475.82 L70.58 474.68 L71.52 473.46 L72.34 472.16 L73.06 470.79 L73.65 469.37 L74.11 467.90 L74.44 466.39 L74.65 464.87 L74.71 463.33"/>
+</g>
+<g id="TEXT:7" data-handle="117">
+<text x="50.58" y="470.90" font-family="monospace" font-size="15.15" textLength="12.98" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">C</text>
+</g>
+<g id="LINE:8" data-handle="118">
+<path d="M74.71 160.39 L983.52 160.39"/>
+</g>
+<g id="CIRCLE:8" data-handle="119">
+<path d="M74.71 160.39 L74.65 158.85 L74.44 157.32 L74.11 155.82 L73.65 154.35 L73.06 152.92 L72.34 151.56 L71.52 150.26 L70.58 149.03 L69.54 147.90 L68.40 146.85 L67.18 145.92 L65.88 145.09 L64.51 144.38 L63.09 143.79 L61.61 143.32 L60.11 142.99 L58.58 142.79 L57.04 142.72 L55.50 142.79 L53.97 142.99 L52.47 143.32 L51.00 143.79 L49.57 144.38 L48.21 145.09 L46.91 145.92 L45.68 146.85 L44.55 147.90 L43.50 149.03 L42.57 150.26 L41.74 151.56 L41.03 152.92 L40.44 154.35 L39.97 155.82 L39.64 157.32 L39.44 158.85 L39.37 160.39 L39.44 161.93 L39.64 163.46 L39.97 164.97 L40.44 166.44 L41.03 167.86 L41.74 169.23 L42.57 170.53 L43.50 171.75 L44.55 172.89 L45.68 173.93 L46.91 174.87 L48.21 175.70 L49.57 176.41 L51.00 177.00 L52.47 177.46 L53.97 177.79 L55.50 178.00 L57.04 178.06 L58.58 178.00 L60.11 177.79 L61.61 177.46 L63.09 177.00 L64.51 176.41 L65.88 175.70 L67.18 174.87 L68.40 173.93 L69.54 172.89 L70.58 171.75 L71.52 170.53 L72.34 169.23 L73.06 167.86 L73.65 166.44 L74.11 164.97 L74.44 163.46 L74.65 161.93 L74.71 160.39"/>
+</g>
+<g id="TEXT:8" data-handle="11A">
+<text x="50.58" y="167.96" font-family="monospace" font-size="15.15" textLength="12.98" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">D</text>
+</g>
+<g id="DIMENSION:1" data-handle="11B">
+<path d="M150.45 993.46 L150.45 1038.90"/>
+<path d="M453.38 993.46 L453.38 1038.90"/>
+<path d="M150.45 1038.90 L453.38 1038.90"/>
+<text x="280.28" y="1035.75" font-family="monospace" font-size="12.62" textLength="43.28" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">6000</text>
+</g>
+<g id="DIMENSION:2" data-handle="11C">
+<path d="M453.38 993.46 L453.38 1038.90"/>
+<path d="M705.83 993.46 L705.83 1038.90"/>
+<path d="M453.38 1038.90 L705.83 1038.90"/>
+<text x="557.97" y="1035.75" font-family="monospace" font-size="12.62" textLength="43.28" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">5000</text>
+</g>
+<g id="DIMENSION:3" data-handle="11D">
+<path d="M705.83 993.46 L705.83 1038.90"/>
+<path d="M907.78 993.46 L907.78 1038.90"/>
+<path d="M705.83 1038.90 L907.78 1038.90"/>
+<text x="785.17" y="1035.75" font-family="monospace" font-size="12.62" textLength="43.28" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">4000</text>
+</g>
+<g id="DIMENSION:4" data-handle="11E">
+<path d="M983.52 917.73 L1028.96 917.73"/>
+<path d="M983.52 715.77 L1028.96 715.77"/>
+<path d="M1028.96 917.73 L1028.96 715.77"/>
+<text x="1025.80" y="838.39" font-family="monospace" font-size="12.62" textLength="43.28" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none" transform="rotate(-90.0000 1025.80 838.39)">4000</text>
+</g>
+<g id="DIMENSION:5" data-handle="11F">
+<path d="M983.52 715.77 L1028.96 715.77"/>
+<path d="M983.52 463.33 L1028.96 463.33"/>
+<path d="M1028.96 715.77 L1028.96 463.33"/>
+<text x="1025.80" y="611.19" font-family="monospace" font-size="12.62" textLength="43.28" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none" transform="rotate(-90.0000 1025.80 611.19)">5000</text>
+</g>
+<g id="DIMENSION:6" data-handle="120">
+<path d="M983.52 463.33 L1028.96 463.33"/>
+<path d="M983.52 160.39 L1028.96 160.39"/>
+<path d="M1028.96 463.33 L1028.96 160.39"/>
+<text x="1025.80" y="333.50" font-family="monospace" font-size="12.62" textLength="43.28" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none" transform="rotate(-90.0000 1025.80 333.50)">6000</text>
+</g>
+<g id="INSERT:1" data-handle="121">
+<path d="M130.25 937.92 L170.64 937.92 L170.64 897.53 L130.25 897.53 L130.25 937.92"/>
+</g>
+<g id="TEXT:9" data-handle="122">
+<text x="175.69" y="892.48" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F3</text>
+</g>
+<g id="INSERT:2" data-handle="123">
+<path d="M130.25 483.52 L170.64 483.52 L170.64 443.13 L130.25 443.13 L130.25 483.52"/>
+</g>
+<g id="TEXT:10" data-handle="124">
+<text x="175.69" y="438.08" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F1</text>
+</g>
+<g id="INSERT:3" data-handle="125">
+<path d="M433.19 735.97 L473.58 735.97 L473.58 695.58 L433.19 695.58 L433.19 735.97"/>
+</g>
+<g id="TEXT:11" data-handle="126">
+<text x="478.63" y="690.53" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F2</text>
+</g>
+<g id="INSERT:4" data-handle="127">
+<path d="M433.19 483.52 L473.58 483.52 L473.58 443.13 L433.19 443.13 L433.19 483.52"/>
+</g>
+<g id="TEXT:12" data-handle="128">
+<text x="478.63" y="438.08" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F3</text>
+</g>
+<g id="INSERT:5" data-handle="129">
+<path d="M433.19 180.59 L473.58 180.59 L473.58 140.20 L433.19 140.20 L433.19 180.59"/>
+</g>
+<g id="TEXT:13" data-handle="12A">
+<text x="478.63" y="135.15" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F2</text>
+</g>
+<g id="INSERT:6" data-handle="12B">
+<path d="M685.63 937.92 L726.02 937.92 L726.02 897.53 L685.63 897.53 L685.63 937.92"/>
+</g>
+<g id="TEXT:14" data-handle="12C">
+<text x="731.07" y="892.48" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F2</text>
+</g>
+<g id="INSERT:7" data-handle="12D">
+<path d="M685.63 735.97 L726.02 735.97 L726.02 695.58 L685.63 695.58 L685.63 735.97"/>
+</g>
+<g id="TEXT:15" data-handle="12E">
+<text x="731.07" y="690.53" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F2</text>
+</g>
+<g id="INSERT:8" data-handle="12F">
+<path d="M685.63 180.59 L726.02 180.59 L726.02 140.20 L685.63 140.20 L685.63 180.59"/>
+</g>
+<g id="TEXT:16" data-handle="130">
+<text x="731.07" y="135.15" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F2</text>
+</g>
+<g id="INSERT:9" data-handle="131">
+<path d="M887.59 937.92 L927.98 937.92 L927.98 897.53 L887.59 897.53 L887.59 937.92"/>
+</g>
+<g id="TEXT:17" data-handle="132">
+<text x="933.03" y="892.48" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F3</text>
+</g>
+<g id="INSERT:10" data-handle="133">
+<path d="M887.59 483.52 L927.98 483.52 L927.98 443.13 L887.59 443.13 L887.59 483.52"/>
+</g>
+<g id="TEXT:18" data-handle="134">
+<text x="933.03" y="438.08" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F1</text>
+</g>
+<g id="INSERT:11" data-handle="135">
+<path d="M887.59 180.59 L927.98 180.59 L927.98 140.20 L887.59 140.20 L887.59 180.59"/>
+</g>
+<g id="TEXT:19" data-handle="136">
+<text x="933.03" y="135.15" font-family="monospace" font-size="12.62" textLength="21.64" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F1</text>
+</g>
+<g id="TEXT:20" data-handle="137">
+<text x="175.69" y="958.12" font-family="monospace" font-size="10.10" textLength="216.38" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F3 FOOTING 2400x2400 TYP.</text>
+</g>
+<g id="TEXT:21" data-handle="138">
+<text x="175.69" y="503.72" font-family="monospace" font-size="10.10" textLength="216.38" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F1 FOOTING 1200x1200 TYP.</text>
+</g>
+<g id="TEXT:22" data-handle="139">
+<text x="478.63" y="756.16" font-family="monospace" font-size="10.10" textLength="216.38" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F2 FOOTING 2100x2100 TYP.</text>
+</g>
+<g id="TEXT:23" data-handle="13A">
+<text x="1160.23" y="160.39" font-family="monospace" font-size="17.67" textLength="242.35" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">FOOTING SCHEDULE</text>
+</g>
+<g id="TEXT:24" data-handle="13B">
+<text x="1160.23" y="195.73" font-family="monospace" font-size="12.62" textLength="216.38" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F1 FOOTING 1200x1200</text>
+</g>
+<g id="TEXT:25" data-handle="13C">
+<text x="1160.23" y="231.08" font-family="monospace" font-size="12.62" textLength="216.38" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F2 FOOTING 2100x2100</text>
+</g>
+<g id="TEXT:26" data-handle="13D">
+<text x="1160.23" y="266.42" font-family="monospace" font-size="12.62" textLength="216.38" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">F3 FOOTING 2400x2400</text>
+</g>
+<g id="MTEXT:1" data-handle="13E">
+<text x="1160.23" y="347.20" font-family="monospace" font-size="10.10" textLength="121.17" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">GENERAL NOTES:</text>
+<text x="1160.23" y="364.03" font-family="monospace" font-size="10.10" textLength="294.28" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">1. FOOTING SIZES ARE AS SCHEDULED.</text>
+<text x="1160.23" y="380.86" font-family="monospace" font-size="10.10" textLength="294.28" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">2. GRIDS ARE FOR SETTING OUT ONLY.</text>
+<text x="1160.23" y="397.69" font-family="monospace" font-size="10.10" textLength="337.56" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">3. SYNTHETIC SHEET, NOT A REAL PROJECT.</text>
+</g>
+<g id="INSERT:12" data-handle="13F">
+<path d="M1160.23 1119.68 L1614.63 1119.68 L1614.63 958.12 L1160.23 958.12 L1160.23 1119.68"/>
+</g>
+<g id="ATTRIB:1" data-handle="140">
+<text x="1175.37" y="983.36" font-family="monospace" font-size="11.11" textLength="142.81" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">FOUNDATION PLAN</text>
+</g>
+<g id="ATTRIB:2" data-handle="141">
+<text x="1175.37" y="1006.08" font-family="monospace" font-size="11.11" textLength="47.60" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">S6.03</text>
+</g>
+<g id="ATTRIB:3" data-handle="142">
+<text x="1175.37" y="1028.80" font-family="monospace" font-size="11.11" textLength="47.60" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">1:100</text>
+</g>
+<g id="ATTRIB:4" data-handle="143">
+<text x="1175.37" y="1051.52" font-family="monospace" font-size="11.11" textLength="47.60" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SYNTH</text>
+</g>
+<g id="ATTRIB:5" data-handle="144">
+<text x="1175.37" y="1074.24" font-family="monospace" font-size="11.11" textLength="9.52" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">A</text>
+</g>
+<g id="ATTRIB:6" data-handle="145">
+<text x="1175.37" y="1096.96" font-family="monospace" font-size="11.11" textLength="209.46" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SYNTHETIC PROJECT 0374</text>
+</g>
+</g></svg>

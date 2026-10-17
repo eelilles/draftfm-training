@@ -1,0 +1,1 @@
+{"entities":[{"layer":"S-ANNO","location":[0.0,0.0],"stable_id":"LINE:1","type":"LINE","vertices":[[0.0,0.0,0.0],[0.0,9000.0,0.0]]},{"height":200.0,"layer":"S-ANNO","location":[0.0,0.0],"stable_id":"TEXT:1","text":"CLIENT: FAKECORP WIDGETS INC - 999 FAKE TESTING LANE - JOB-FAKE-00042","type":"TEXT"}],"units":4}

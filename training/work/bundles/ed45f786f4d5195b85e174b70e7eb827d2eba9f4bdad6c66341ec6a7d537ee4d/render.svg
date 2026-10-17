@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1654" height="1169" viewBox="0 0 1654 1169" data-renderer="draftfm-render/1">
+<rect width="1654" height="1169" fill="#ffffff"/>
+<g fill="none" stroke="#000000" stroke-width="1">
+<g id="LINE:1">
+<path d="M68.01 822.29 L68.01 257.43"/>
+</g>
+<g id="LINE:2">
+<path d="M444.57 822.29 L444.57 257.43"/>
+</g>
+<g id="LINE:3">
+<path d="M68.01 822.29 L444.57 822.29"/>
+</g>
+<g id="LINE:4">
+<path d="M68.01 257.43 L444.57 257.43"/>
+</g>
+<g id="INSERT:1">
+<path d="M64.01 818.29 L72.01 826.29 M64.01 826.29 L72.01 818.29"/>
+</g>
+<g id="INSERT:2">
+<path d="M440.57 818.29 L448.57 826.29 M440.57 826.29 L448.57 818.29"/>
+</g>
+<g id="INSERT:3">
+<path d="M126.77 755.53 L134.77 763.53 M126.77 763.53 L134.77 755.53"/>
+</g>
+<g id="INSERT:4">
+<path d="M377.81 755.53 L385.81 763.53 M377.81 763.53 L385.81 755.53"/>
+</g>
+<g id="INSERT:5">
+<path d="M126.77 316.20 L134.77 324.20 M126.77 324.20 L134.77 316.20"/>
+</g>
+<g id="TEXT:1">
+<text x="130.77" y="746.97" font-family="monospace" font-size="12.55" textLength="53.80" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">24x24</text>
+</g>
+<g id="TEXT:2">
+<text x="1009.43" y="790.91" font-family="monospace" font-size="12.55" textLength="53.80" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">24x24</text>
+</g>
+<g id="TEXT:3">
+<text x="130.77" y="307.64" font-family="monospace" font-size="12.55" textLength="53.80" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">30x30</text>
+</g>
+<g id="TEXT:4">
+<text x="1009.43" y="778.35" font-family="monospace" font-size="12.55" textLength="53.80" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">30x30</text>
+</g>
+<g id="TEXT:5">
+<text x="68.01" y="853.67" font-family="monospace" font-size="12.55" textLength="677.83" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SYNTHETIC FOUNDATION PLAN - BVES TEMPLATE (DUAL MARKER FIXTURE)</text>
+</g>
+<g id="MTEXT:1">
+<text x="821.14" y="241.74" font-family="monospace" font-size="15.69" textLength="793.49" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">GENERAL NOTES: 1. ALL FOOTING SIZES SHOWN ARE SCHEDULED AND</text>
+<text x="821.14" y="267.89" font-family="monospace" font-size="15.69" textLength="780.04" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SHALL BE CONFIRMED AGAINST THE STRUCTURAL FOOTING SCHEDULE</text>
+<text x="821.14" y="294.04" font-family="monospace" font-size="15.69" textLength="739.69" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">PRIOR TO FORMWORK. 2. GRID LINES SHOWN ARE FOR LOCATION</text>
+<text x="821.14" y="320.20" font-family="monospace" font-size="15.69" textLength="726.24" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">REFERENCE ONLY AND ARE NOT TO BE USED FOR FOOTING SIZE</text>
+<text x="821.14" y="346.35" font-family="monospace" font-size="15.69" textLength="699.34" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">TAKEOFF. 3. DO NOT SCALE DRAWING. 4. THIS SHEET IS A</text>
+<text x="821.14" y="372.50" font-family="monospace" font-size="15.69" textLength="712.79" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">SYNTHETIC FIXTURE AND DOES NOT DEPICT A REAL PROJECT.</text>
+</g>
+<g id="DIMENSION:1">
+<path d="M68.01 822.29 L68.01 841.12"/>
+<path d="M444.57 822.29 L444.57 841.12"/>
+<path d="M68.01 841.12 L444.57 841.12"/>
+<text x="242.84" y="839.16" font-family="monospace" font-size="7.85" textLength="26.90" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">6000</text>
+</g>
+<g id="DIMENSION:2">
+<path d="M68.01 822.29 L49.18 822.29"/>
+<path d="M68.01 257.43 L49.18 257.43"/>
+<path d="M49.18 822.29 L49.18 257.43"/>
+<text x="47.22" y="553.31" font-family="monospace" font-size="7.85" textLength="26.90" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none" transform="rotate(-90.0000 47.22 553.31)">9000</text>
+</g>
+<g id="ARC:1">
+<path d="M140.18 759.53 L140.15 758.71 L140.04 757.89 L139.86 757.09 L139.61 756.31 L139.30 755.55 L138.92 754.82 L138.48 754.13 L137.98 753.48 L137.42 752.87 L136.82 752.31 L136.17 751.81 L135.47 751.37 L134.75 750.99 L133.99 750.68 L133.20 750.43 L132.40 750.26 L131.59 750.15 L130.77 750.11"/>
+</g>
+<g id="TEXT:6">
+<text x="68.01" y="928.98" font-family="monospace" font-size="9.41" textLength="153.32" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">JOB-FAKE-DUAL-00099</text>
+</g>
+<g id="TEXT:7">
+<text x="68.01" y="941.53" font-family="monospace" font-size="9.41" textLength="258.22" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">J. FAKE DUAL-MARKER DRAFTSPERSON</text>
+</g>
+<g id="INSERT:6">
+<path d="M64.01 881.05 L72.01 889.05 M64.01 889.05 L72.01 881.05"/>
+</g>
+<g id="ATTRIB:1">
+<text x="68.01" y="878.77" font-family="monospace" font-size="9.41" textLength="258.22" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">FAKECORP DUAL-MARKER WIDGETS INC</text>
+</g>
+<g id="ATTRIB:2">
+<text x="68.01" y="922.71" font-family="monospace" font-size="9.41" textLength="217.87" lengthAdjust="spacingAndGlyphs" fill="#000000" stroke="none">R. FAKE DUAL-MARKER CHECKER</text>
+</g>
+</g></svg>

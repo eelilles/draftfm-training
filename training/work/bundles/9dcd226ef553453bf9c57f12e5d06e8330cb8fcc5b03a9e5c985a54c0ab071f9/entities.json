@@ -1,0 +1,1 @@
+{"entities":[{"layer":"A-WALL","location":[0.0,0.0],"stable_id":"LINE:1","type":"LINE","vertices":[[0.0,0.0,0.0],[10.0,0.0,0.0]]},{"block":"TITLE_BLOCK","layer":"A-ANNO","location":[0.0,0.0],"stable_id":"INSERT:1","type":"INSERT"},{"layer":"TITLE","location":[1.0,1.0],"stable_id":"TEXT:1","text":"SYNTHETIC PLAN","type":"TEXT"}],"units":4}
