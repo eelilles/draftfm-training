@@ -36,4 +36,13 @@ python llama.cpp/convert_hf_to_gguf.py "$OUT"/merged-16bit --outfile "$OUT"/draf
   && python llama.cpp/convert_hf_to_gguf.py "$OUT"/merged-16bit --mmproj --outfile "$OUT"/draftfm-3b-mmproj.gguf \
   || echo "WARNING: GGUF conversion failed; "$OUT"/merged-16bit (safetensors) is still complete"
 ls -la "$OUT"
+( cd "$OUT" && sha256sum draftfm-3b.gguf draftfm-3b-mmproj.gguf train_run.json 2>/dev/null | tee SHA256SUMS )
 echo "Done. Download $OUT/ then: ollama create draftfm-3b -f Modelfile  (with draftfm-3b.gguf beside it)"
+# Hand the results off before anyone can terminate the box: pack them and offer them with runpodctl.
+# `runpodctl send` prints a one-time code and WAITS until `runpodctl receive <code>` runs on the laptop,
+# so this line stays in the log until the transfer completes. Set AUTO_SEND=0 to skip.
+if [ "${AUTO_SEND:-1}" = "1" ] && command -v runpodctl >/dev/null 2>&1; then
+  ( cd "$OUT" && tar cf draftfm-results.tar draftfm-3b.gguf draftfm-3b-mmproj.gguf train_run.json SHA256SUMS lora && ls -la draftfm-results.tar )
+  echo "=== RESULTS READY: on the laptop run the 'runpodctl receive ...' line printed below ==="
+  ( cd "$OUT" && runpodctl send draftfm-results.tar )
+fi
