@@ -53,7 +53,12 @@ def main() -> int:
     ap.add_argument("--rank", type=int, default=16)
     ap.add_argument("--max-rows", type=int, default=0, help="Subsample for a smoke run.")
     ap.add_argument("--seed", type=int, default=3407)
-    ap.add_argument("--num-workers", type=int, default=2, help="DataLoader workers decoding images; 0 = in-process.")
+    ap.add_argument("--num-workers", type=int, default=2, help="DataLoader workers; 0 = in-process.")
+    ap.add_argument("--image-width", type=int, default=1288,
+                    help="Resize each drawing to this width (aspect kept) once, before training. 1288 px on an A3 sheet is about "
+                         "3.1 px/mm and ~1,470 image tokens. Without this, Unsloth's collator falls back to 512 px for Qwen2.5-VL "
+                         "(no image_size in its vision config), which makes drawing text illegible. 0 = keep full size.")
+    ap.add_argument("--max-seq", type=int, default=3072, help="Max tokens per example (image tokens + prompt + answer).")
     a = ap.parse_args()
 
     from PIL import Image
@@ -70,31 +75,33 @@ def main() -> int:
     card = json.loads((data_dir / "dataset_card.json").read_text(encoding="utf-8"))
     print(f"{len(rows)} rows; data classes {card['by_data_class']}; test sources excluded: {card['excluded_test_sources']}")
 
-    model, tokenizer = FastVisionModel.from_pretrained(a.base, load_in_4bit=True, use_gradient_checkpointing="unsloth")
+    model, tokenizer = FastVisionModel.from_pretrained(a.base, load_in_4bit=True, use_gradient_checkpointing="unsloth", max_seq_length=a.max_seq)
     model = FastVisionModel.get_peft_model(
         model, finetune_vision_layers=True, finetune_language_layers=True,
         finetune_attention_modules=True, finetune_mlp_modules=True,
         r=a.rank, lora_alpha=a.rank, lora_dropout=0, bias="none", random_state=a.seed,
     )
-    # Open each image when the batch is built, not all of them up front: on 2026-10-17 the
-    # eager list comprehension that was here decoded all 14,062 PNGs into RAM at once and the
-    # full run was SIGKILLed by the host OOM killer (exit 137, 31 GB box) before step 0, while
-    # the 300-row smoke run passed the same point. Peak host RAM is now ~one batch of images.
-    from torch.utils.data import Dataset
+    # Decode each distinct image once, resize it once, and share it across its rows. The set has 14,062 rows
+    # but only ~384 distinct drawings; decoding per row held ~82 GB in RAM (OOM-killed, exit 137, 2026-10-17),
+    # and the LazyRows torch Dataset that replaced it was rejected by SFTTrainer (TypeError). A plain list of
+    # rows sharing ~384 resized images needs about 2 GB.
+    images: dict[str, object] = {}
 
-    class LazyRows(Dataset):
-        def __init__(self, rows): self.rows = rows
-        def __len__(self): return len(self.rows)
-        def __getitem__(self, i):
-            r = self.rows[i]
-            with Image.open(r["image"]) as im:
-                return to_messages(r, im.convert("RGB"))
+    def image_for(path: str):
+        if path not in images:
+            im = Image.open(path).convert("RGB")
+            if a.image_width and im.width > a.image_width:
+                im = im.resize((a.image_width, round(im.height * a.image_width / im.width)), Image.LANCZOS)
+            images[path] = im
+        return images[path]
 
-    dataset = LazyRows(rows)
+    dataset = [to_messages(r, image_for(r["image"])) for r in rows]
+    sizes = sorted({im.size for im in images.values()})
+    print(f"{len(images)} distinct images decoded for {len(dataset)} rows; image sizes {sizes[:3]}; max_seq {a.max_seq}")
 
     FastVisionModel.for_training(model)
     trainer = SFTTrainer(
-        model=model, tokenizer=tokenizer, data_collator=UnslothVisionDataCollator(model, tokenizer),
+        model=model, tokenizer=tokenizer, data_collator=UnslothVisionDataCollator(model, tokenizer, resize="max", max_seq_length=a.max_seq),  # images already sized above
         train_dataset=dataset,
         args=SFTConfig(
             per_device_train_batch_size=a.batch, gradient_accumulation_steps=a.grad_accum,
@@ -103,7 +110,7 @@ def main() -> int:
             optim="adamw_8bit", weight_decay=0.01, lr_scheduler_type="cosine", seed=a.seed,
             output_dir=str(Path(a.out) / "checkpoints"), report_to="none",
             remove_unused_columns=False, dataset_text_field="", dataset_kwargs={"skip_prepare_dataset": True},
-            max_seq_length=2048, dataloader_num_workers=a.num_workers,
+            max_seq_length=a.max_seq, dataloader_num_workers=a.num_workers,
         ),
     )
     stats = trainer.train()
@@ -111,7 +118,7 @@ def main() -> int:
     model.save_pretrained(out / "lora"); tokenizer.save_pretrained(out / "lora")
     model.save_pretrained_merged(str(out / "merged-16bit"), tokenizer, save_method="merged_16bit")
     (out / "train_run.json").write_text(json.dumps({
-        "base": a.base, "rows": len(rows), "epochs": a.epochs, "lr": a.lr, "rank": a.rank,
+        "base": a.base, "rows": len(rows), "image_width": a.image_width, "max_seq": a.max_seq, "epochs": a.epochs, "lr": a.lr, "rank": a.rank,
         "dataset_card": card, "train_runtime_s": stats.metrics.get("train_runtime"),
         "train_loss": stats.metrics.get("train_loss"),
     }, indent=1), encoding="utf-8")
