@@ -26,6 +26,7 @@ printf 'torch==%s\n' "$TORCH_VER" > /tmp/draftfm-constraints.txt
 pip uninstall -y -q xformers torchao 2>/dev/null || true
 pip install -q --upgrade --upgrade-strategy only-if-needed -c /tmp/draftfm-constraints.txt unsloth unsloth_zoo trl datasets pillow
 python -c "import unsloth, torch; print('unsloth', unsloth.__version__, 'torch', torch.__version__); assert torch.__version__.startswith('$TORCH_VER'), 'torch was changed by pip'"
+export TORCHINDUCTOR_COMPILE_THREADS=${TORCHINDUCTOR_COMPILE_THREADS:-1}  # 32 Inductor workers forked from a 7.5 GB parent OOM-killed the full run on a 58 GB cgroup, 2026-10-17
 python finetune_qwen25vl_qlora.py --data "$DATA" --out "$OUT" --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
 # GGUF for Ollama
 [ -d llama.cpp ] || git clone --depth 1 https://github.com/ggml-org/llama.cpp
