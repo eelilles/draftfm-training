@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # One-shot DraftFM stage 3 on a fresh rented Linux GPU box (RunPod / Lambda / Vast, CUDA 12.x, >= 16 GB VRAM).
 # Upload draftfm-train-synth-v1.zip and this repo's training/ folder, then:   bash run_on_rented_gpu.sh
-# Produces results/: lora/, merged-16bit/, draftfm-3b.gguf, train_run.json. Download results/ and destroy the box.
+# Produces results/: lora/, merged-16bit/, draftfm-3b.gguf, train_run.json. Download $OUT/ and destroy the box.
 set -euo pipefail
 cd "$(dirname "$0")"
 DATA=${DATA:-draftfm-train-synth-v1}
+OUT=${OUT:-results}          # put it on the persistent volume (e.g. OUT=/workspace/results-full) on RunPod
+mkdir -p "$OUT"
 if [ ! -d "$DATA" ]; then
   if [ -f "$DATA.zip" ]; then unzip -q "$DATA.zip" -d "$DATA"
   else  # inside a clone of bves-drafting: regenerate the synthetic set from the repo itself (seconds, no upload)
@@ -24,14 +26,14 @@ printf 'torch==%s\n' "$TORCH_VER" > /tmp/draftfm-constraints.txt
 pip uninstall -y -q xformers torchao 2>/dev/null || true
 pip install -q --upgrade --upgrade-strategy only-if-needed -c /tmp/draftfm-constraints.txt unsloth unsloth_zoo trl datasets pillow
 python -c "import unsloth, torch; print('unsloth', unsloth.__version__, 'torch', torch.__version__); assert torch.__version__.startswith('$TORCH_VER'), 'torch was changed by pip'"
-python finetune_qwen25vl_qlora.py --data "$DATA" --out results --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
+python finetune_qwen25vl_qlora.py --data "$DATA" --out "$OUT" --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
 # GGUF for Ollama
 [ -d llama.cpp ] || git clone --depth 1 https://github.com/ggml-org/llama.cpp
 pip install -q -r llama.cpp/requirements/requirements-convert_hf_to_gguf.txt
 # Text weights + the vision projector (Qwen2.5-VL needs both for Ollama). Non-fatal: merged-16bit is the
 # deliverable; GGUF is a convenience.
-python llama.cpp/convert_hf_to_gguf.py results/merged-16bit --outfile results/draftfm-3b.gguf --outtype q8_0 \
-  && python llama.cpp/convert_hf_to_gguf.py results/merged-16bit --mmproj --outfile results/draftfm-3b-mmproj.gguf \
-  || echo "WARNING: GGUF conversion failed; results/merged-16bit (safetensors) is still complete"
-ls -la results
-echo "Done. Download results/ then: ollama create draftfm-3b -f Modelfile  (with draftfm-3b.gguf beside it)"
+python llama.cpp/convert_hf_to_gguf.py "$OUT"/merged-16bit --outfile "$OUT"/draftfm-3b.gguf --outtype q8_0 \
+  && python llama.cpp/convert_hf_to_gguf.py "$OUT"/merged-16bit --mmproj --outfile "$OUT"/draftfm-3b-mmproj.gguf \
+  || echo "WARNING: GGUF conversion failed; "$OUT"/merged-16bit (safetensors) is still complete"
+ls -la "$OUT"
+echo "Done. Download $OUT/ then: ollama create draftfm-3b -f Modelfile  (with draftfm-3b.gguf beside it)"
