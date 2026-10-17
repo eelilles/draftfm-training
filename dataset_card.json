@@ -1,0 +1,63 @@
+{
+ "by_data_class": {
+  "synthetic": 14062
+ },
+ "by_task": {
+  "dimension_value": 1903,
+  "grid_position": 2644,
+  "member_schedule": 3272,
+  "stale_references": 930,
+  "text_localisation": 3041,
+  "title_block_field": 2272
+ },
+ "dropped_items": 0,
+ "excluded_test_source_ids": [
+  "1b014094e14339e99a9af926f51457fc90b7e6f8846b38c4f0ae1ff2960eb9c3",
+  "25c99c15139d8f66555bb72454f36f05c5c82fadd75a53bf5cac5e21189266aa",
+  "2d13bcb9f83dff9d3bb6703f71dc7398c76f0ccc72804bcefb38e767322ffd2f",
+  "32ec0d19fb1c1898269138aafcd046eb021f3ebbb96be99737c3d0ec3f9751a7",
+  "416d93adc4d2f597e8f51699a6cda6ce1ee6c3fd67b4906d0e0b221aa0ef0c15",
+  "4ea4b16ee45761f519e2aff741d21243443aac4f5f2c62410231c0b385354ea2",
+  "60935af60690dddb0c66c6fa44d07e8b07dfc7b34979d738ffb973be7a04265b",
+  "6b70b541e10abedf26a96e6e7ae67f7ef20d8f03ff45623e905e7b62df35f47e",
+  "701fe0fa04bab5a5fba21ca6621594da0af7d55efcd68136b0a6640726be6126",
+  "74ff2aec7e4100c72bcbf9358c68bf5a58bdbce1fcc59a4240027457a92ea016",
+  "93c6e6bcf7c23c3457b7b7a192d66af9ec783ab8cee85a86631c0caeb26544a9",
+  "96b5eda2e80c399047f751af5bac0693be74e392856acd8f32b99f01111bc6f2",
+  "a480fa670e8ba93098598ee94173dae0dec6f054f2042a0d60a12a154b678a17",
+  "a6639745e359d9c4e7cecec8a90b536263a28dabdac3d3df053d0645eb5dbb50",
+  "c059cedf5109fa82016212000db5cb38e12136d0f225955e1822211b54336a0c",
+  "dfa0b2ba7a3b220d13573f7bb9ddc5afd9cda301661d4f37c5d7286c5b930b68",
+  "e7dc8db8db5b90e924350fe31ed8f1293e4808c041042c98f3de7c185ab153e2",
+  "f81621e2de0c03098154906562673bf8542a3d02a3ad6fca3d015eea867b647e",
+  "fea7c008a80f414b16d96effa4efc8a53290803b85334b248f1c9e811b06e7b3",
+  "ffd6a42b41bdd17383521f4e2f75b01293cd78aa712875f85af4f29f3c5d23de"
+ ],
+ "excluded_test_sources": 20,
+ "extra_seeds": [
+  25,
+  400
+ ],
+ "format": "draftfm-train/1",
+ "golden_set": "golden-v1",
+ "jsonl_sha256": "191d8ffe7d427bb46226d91259a5dfe92c87b9472be424addfb4aaa129672817",
+ "out_dir": "training/data/draftfm-train-synth-v1",
+ "prompt_contract": "identical to draftfm.exam.VisionSolver; grade with `draftfm exam --solver ollama`",
+ "render_spec": {
+  "dpi": 100,
+  "margin_mm": 10.0,
+  "paper_mm": [
+   420.0,
+   297.0
+  ]
+ },
+ "rows": 14062,
+ "sources": 385,
+ "versions": {
+  "encoder": "draftfm-structural/2",
+  "factory": "draftfm-factory/1",
+  "generator": "draftfm-synth/1",
+  "renderer": "draftfm-render/1",
+  "tasks": "draftfm-tasks/1"
+ }
+}
