@@ -30,7 +30,7 @@ export TORCHINDUCTOR_COMPILE_THREADS=${TORCHINDUCTOR_COMPILE_THREADS:-1}  # 32 I
 python finetune_qwen25vl_qlora.py --data "$DATA" --out "$OUT" --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
 # GGUF for Ollama
 [ -d llama.cpp ] || git clone --depth 1 https://github.com/ggml-org/llama.cpp
-pip install -q -r llama.cpp/requirements/requirements-convert_hf_to_gguf.txt
+pip install -q -c /tmp/draftfm-constraints.txt -r llama.cpp/requirements/requirements-convert_hf_to_gguf.txt  # unconstrained, this pulled CPU torch 2.11 over cu128 after the GGUF export and poisoned the next run, 2026-10-17
 # Text weights + the vision projector (Qwen2.5-VL needs both for Ollama). Non-fatal: merged-16bit is the
 # deliverable; GGUF is a convenience.
 python llama.cpp/convert_hf_to_gguf.py "$OUT"/merged-16bit --outfile "$OUT"/draftfm-3b.gguf --outtype q8_0 \
