@@ -1,3 +1,5 @@
 draftfm-train-synth-v1/
 results/
 llama.cpp/
+__pycache__/
+*.pyc

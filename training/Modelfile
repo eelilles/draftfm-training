@@ -1,4 +1,11 @@
+# Qwen2.5-VL needs BOTH files: the text weights and the vision projector.
+# With only the first line Ollama loads a text-only model that silently
+# ignores the image (2026-10-17).
 FROM ./draftfm-3b.gguf
+FROM ./draftfm-3b-mmproj.gguf
 PARAMETER temperature 0
-PARAMETER num_predict 256
+# Matches the default of draftfm's ollama backend. The exam sends its own
+# options.num_predict, which overrides this; they are kept equal so a model
+# driven by hand cannot be truncated differently from a model under the exam.
+PARAMETER num_predict 2048
 SYSTEM You read engineering drawings. Answer only with the JSON object requested.

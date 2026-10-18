@@ -26,11 +26,48 @@ printf 'torch==%s\n' "$TORCH_VER" > /tmp/draftfm-constraints.txt
 pip uninstall -y -q xformers torchao 2>/dev/null || true
 pip install -q --upgrade --upgrade-strategy only-if-needed -c /tmp/draftfm-constraints.txt unsloth unsloth_zoo trl datasets pillow
 python -c "import unsloth, torch; print('unsloth', unsloth.__version__, 'torch', torch.__version__); assert torch.__version__.startswith('$TORCH_VER'), 'torch was changed by pip'"
-export TORCHINDUCTOR_COMPILE_THREADS=${TORCHINDUCTOR_COMPILE_THREADS:-1}  # 32 Inductor workers forked from a 7.5 GB parent OOM-killed the full run on a 58 GB cgroup, 2026-10-17
-python finetune_qwen25vl_qlora.py --data "$DATA" --out "$OUT" --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
+# Inductor compile workers. TORCHINDUCTOR_COMPILE_THREADS=1 alone did NOT stop torch 2.8 from
+# forking ~30 of them (the container sees nproc=128 on an 8-vCPU pod, and the env var was read
+# after the pool was sized); 32 workers forked from a 7.5 GB parent OOM-killed the full run on a
+# 58 GB cgroup, 2026-10-17. Belt and braces: the variable, torch._inductor.config set in-process
+# before the first compile (sitecustomize, so it applies however python is entered), and taskset
+# to the CPUs the pod actually has.
+export TORCHINDUCTOR_COMPILE_THREADS=${TORCHINDUCTOR_COMPILE_THREADS:-1}
+export OMP_NUM_THREADS=${OMP_NUM_THREADS:-4}
+cat > "$PWD/sitecustomize.py" <<'PYEOF'
+try:
+    import torch._inductor.config as _c
+    _c.compile_threads = 1
+except Exception:
+    pass
+PYEOF
+export PYTHONPATH="$PWD:${PYTHONPATH:-}"
+CPUS=$(nproc --all 2>/dev/null || echo 8)
+QUOTA=$(cat /sys/fs/cgroup/cpu.max 2>/dev/null | awk '{if ($1!="max") print int($1/$2)}')
+[ -n "${QUOTA:-}" ] && CPUS=$QUOTA
+echo "limiting compile workers to 1; cpus=$CPUS"
+
+# Memory monitor: the first OOM kill (exit 137) left no record of how close the run had been.
+# cgroup v2 then v1, whichever the pod has.
+( while true; do
+    USED=$(cat /sys/fs/cgroup/memory.current 2>/dev/null || cat /sys/fs/cgroup/memory/memory.usage_in_bytes 2>/dev/null || echo 0)
+    LIM=$(cat /sys/fs/cgroup/memory.max 2>/dev/null || cat /sys/fs/cgroup/memory/memory.limit_in_bytes 2>/dev/null || echo 0)
+    echo "[mem] $(date -u +%H:%M:%S) rss_cgroup=$((USED/1024/1024))MiB limit=$((LIM/1024/1024))MiB procs=$(ls /proc | grep -c '^[0-9]')"
+    sleep 30
+  done ) &
+MONITOR=$!
+trap 'kill $MONITOR 2>/dev/null || true' EXIT
+
+taskset -c 0-$((CPUS-1)) python finetune_qwen25vl_qlora.py --data "$DATA" --out "$OUT" --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
 # GGUF for Ollama
 [ -d llama.cpp ] || git clone --depth 1 https://github.com/ggml-org/llama.cpp
-pip install -q -c /tmp/draftfm-constraints.txt -r llama.cpp/requirements/requirements-convert_hf_to_gguf.txt  # unconstrained, this pulled CPU torch 2.11 over cu128 after the GGUF export and poisoned the next run, 2026-10-17
+# llama.cpp's requirements-convert_hf_to_gguf.txt pins torch~=2.11, so installing it under the
+# constraints file (torch==2.8.0) is unsatisfiable and `set -e` aborted the 10-17 run here --
+# after the merge, before GGUF, SHA256SUMS and the handoff. Installing it UNconstrained is worse:
+# it replaced torch 2.8.0+cu128 with 2.11.0+cpu and poisoned the pod for the next run. The
+# converter needs none of that torch: gguf-py plus three tokeniser packages is the whole of it.
+pip install -q -c /tmp/draftfm-constraints.txt ./llama.cpp/gguf-py sentencepiece protobuf mistral-common
+python -c "import torch; assert torch.__version__.startswith('$TORCH_VER'), 'torch was changed by the GGUF install'"
 # Text weights + the vision projector (Qwen2.5-VL needs both for Ollama). Non-fatal: merged-16bit is the
 # deliverable; GGUF is a convenience.
 python llama.cpp/convert_hf_to_gguf.py "$OUT"/merged-16bit --outfile "$OUT"/draftfm-3b.gguf --outtype q8_0 \
@@ -38,12 +75,23 @@ python llama.cpp/convert_hf_to_gguf.py "$OUT"/merged-16bit --outfile "$OUT"/draf
   || echo "WARNING: GGUF conversion failed; "$OUT"/merged-16bit (safetensors) is still complete"
 ls -la "$OUT"
 ( cd "$OUT" && sha256sum draftfm-3b.gguf draftfm-3b-mmproj.gguf train_run.json 2>/dev/null | tee SHA256SUMS )
-echo "Done. Download $OUT/ then: ollama create draftfm-3b -f Modelfile  (with draftfm-3b.gguf beside it)"
-# Hand the results off before anyone can terminate the box: pack them and offer them with runpodctl.
-# `runpodctl send` prints a one-time code and WAITS until `runpodctl receive <code>` runs on the laptop,
-# so this line stays in the log until the transfer completes. Set AUTO_SEND=0 to skip.
-if [ "${AUTO_SEND:-1}" = "1" ] && command -v runpodctl >/dev/null 2>&1; then
-  ( cd "$OUT" && tar cf draftfm-results.tar draftfm-3b.gguf draftfm-3b-mmproj.gguf train_run.json SHA256SUMS lora && ls -la draftfm-results.tar )
-  echo "=== RESULTS READY: on the laptop run the 'runpodctl receive ...' line printed below ==="
+
+# Pack everything the laptop needs into one file and checksum the file itself, so a truncated
+# transfer is caught by the fetcher rather than by `ollama create` an hour later.
+( cd "$OUT" \
+  && tar cf draftfm-results.tar draftfm-3b.gguf draftfm-3b-mmproj.gguf train_run.json SHA256SUMS lora \
+  && sha256sum draftfm-results.tar > draftfm-results.tar.sha256 \
+  && ls -la draftfm-results.tar )
+
+# tools/rent_and_train.py in bves-drafting watches the log for this exact line and then scps the
+# tar off the pod. Keep the text stable.
+echo "=== RESULTS READY ==="
+echo "$OUT/draftfm-results.tar"
+
+# `runpodctl send` prints a one-time code and WAITS for a human to run `runpodctl receive <code>`,
+# so it cannot be part of an unattended run. Off by default; AUTO_SEND=1 brings it back for a
+# hand-driven session.
+if [ "${AUTO_SEND:-0}" = "1" ] && command -v runpodctl >/dev/null 2>&1; then
   ( cd "$OUT" && runpodctl send draftfm-results.tar )
 fi
+echo "Done. Fetch $OUT/draftfm-results.tar, then: ollama create draftfm-3b -f Modelfile"

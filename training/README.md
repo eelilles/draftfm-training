@@ -18,19 +18,47 @@ boundary, and only after the 2026-10-16 leak screen is cleared.
 
 ## 2. Fine-tune (GPU)
 
-    pip install -c <(echo torch==$(python -c "import torch;print(torch.__version__.split('+')[0])")) unsloth unsloth_zoo trl datasets pillow   # never let pip change torch
-    python training/finetune_qwen25vl_qlora.py --data D:\draftfm-train --out D:\draftfm-run1 --max-rows 2000   # smoke
-    python training/finetune_qwen25vl_qlora.py --data D:\draftfm-train --out D:\draftfm-run1                   # full
+Normally you do not run this by hand: `tools/rent_and_train.py` in the
+`bves-drafting` repository rents the pod, clones this repo at a commit, runs
+`run_on_rented_gpu.sh`, fetches the results over ssh and terminates the pod.
+By hand it is:
 
-3B at 4-bit QLoRA, rank 16, one epoch over 14k image-question pairs: roughly
-1–2 h on a 24 GB card. Untested on hardware as of 2026-10-16.
+    pip install -c <(echo torch==$(python -c "import torch;print(torch.__version__.split('+')[0])")) unsloth unsloth_zoo trl datasets pillow   # never let pip change torch
+    python training/finetune_qwen25vl_qlora.py --data D:\draftfm-train --out D:\draftfm-run1 --max-rows 300   # smoke
+    python training/finetune_qwen25vl_qlora.py --data D:\draftfm-train --out D:\draftfm-run1                  # full
+
+3B at 4-bit QLoRA, rank 16, one epoch over 14k image-question pairs.
+Measured on a rented RTX 4090: 879 steps at 1288 px took 3h46m. The default
+is now **native resolution** (A3 at 100 dpi, 1654x1169 px, ~2,480 image
+tokens), so expect roughly 6–7 h.
+
+### Do not resize the drawings
+
+The 2026-10-17 run resized every sheet to 1288 px and left the coordinates in
+prompts and answers in the 1654 px frame they were measured in. 383 of the 384
+drawings are landscape, so nearly the whole epoch showed every box about 22 %
+away from the thing it named. Loss fell normally (4.14 -> 0.14) and the model
+came out unable to do anything positional: `"axis": "vertical"` on 86 of 91
+dimension items, `"horizontal"` on all 125 grid items, one answer for all 40
+stale-reference items, and localisation boxes of the right *size* (166x16 px
+against a gold mean of 162x12) in the wrong *place* (slope of model centre on
+gold centre: 0.30 in x, 0.05 in y). It is not forgetting and not a scoring
+bug: the numbers in the prompt stopped carrying information, so the model
+stopped using them.
+
+`--image-width` now defaults to 0 and **refuses** any value when the data is
+pixel-framed (8,216 of the 14,062 rows are: `dimension_value`,
+`member_schedule`, `text_localisation`). To train smaller, re-export with the
+coordinates measured in that width.
 
 ## 3. Serve it locally and grade it on the SAME exam
 
     # GGUF via llama.cpp's convert script, then an Ollama Modelfile:
     python convert_hf_to_gguf.py D:\draftfm-run1\merged-16bit --outfile draftfm-3b.gguf --outtype q8_0
-    ollama create draftfm-3b -f training/Modelfile
-    python -m bves_drafting.draftfm exam --solver ollama --model draftfm-3b --split test --report D:\draftfm-run1\exam.json
+    python convert_hf_to_gguf.py D:\draftfm-run1\merged-16bit --mmproj --outfile draftfm-3b-mmproj.gguf
+    ollama create draftfm-3b -f training/Modelfile     # BOTH gguf files beside it; one FROM line loads a blind model
+    python -m bves_drafting.draftfm exam --solver ollama --model draftfm-3b --split test --synthetic-only         --cache-dir D:\draftfm-run1\cache --report D:\draftfm-run1\exam.json
+    python tools/exam_diff.py D:\draftfm-run1          # accuracy against the majority-class baseline, per task
 
 Compare per task type against `research/draftfm-representation-benchmark.md`
 ("Stage 2", qwen2.5vl:3b column). The number that matters is `member_schedule`,
@@ -42,7 +70,7 @@ Compare per task type against `research/draftfm-representation-benchmark.md`
 | option | VRAM | data boundary | note |
 |---|---|---|---|
 | workstation bvesws1 | check `nvidia-smi` | inside | if ≥ 12 GB, run step 2 there |
-| rented GPU (RunPod / Lambda / Vast, RTX 4090 or A5000 24 GB) | 24 GB | synthetic set only | ~US$0.5–0.8/h, one evening |
+| rented GPU (RunPod RTX 4090, `tools/rent_and_train.py`) | 24 GB | **synthetic set only** | US$0.90/h on demand; ~$6 for a full native-resolution run |
 | laptop bves-quentin | 4 GB | inside | export + exam only |
 
 ## What this does not do

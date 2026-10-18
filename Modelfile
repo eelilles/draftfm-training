@@ -1,4 +1,0 @@
-FROM ./draftfm-3b.gguf
-PARAMETER temperature 0
-PARAMETER num_predict 256
-SYSTEM You read engineering drawings. Answer only with the JSON object requested.
