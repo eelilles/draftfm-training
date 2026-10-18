@@ -16,6 +16,13 @@ if [ ! -d "$DATA" ]; then
   fi
 fi
 nvidia-smi --query-gpu=name,memory.total --format=csv
+# Ubuntu 24.04 marks its system Python externally managed (PEP 668) and pip refuses to install
+# into it. That interpreter is where this image's torch lives -- `python -c "import torch"` below
+# proves it -- so installing beside torch is the correct target, not a mistake to work around with
+# a venv that would not see it. A rented container is disposable; there is no system to protect.
+# Non-interactive ssh does not read ~/.bashrc, which is why a hand-driven session never hit this
+# (2026-10-18, first unattended run: exit 1 at the unsloth install).
+export PIP_BREAK_SYSTEM_PACKAGES=1
 # Keep the image's own torch/CUDA build: no torch pin, no extras (the cu124-torch250 extra downgraded
 # torch 2.8->2.5 and broke torchao on the first run, 2026-10-17).
 python -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda)"
