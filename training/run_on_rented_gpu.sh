@@ -62,10 +62,17 @@ echo "limiting compile workers to 1; cpus=$CPUS"
 
 # Memory monitor: the first OOM kill (exit 137) left no record of how close the run had been.
 # cgroup v2 then v1, whichever the pod has.
+# anon= is the number that decides an OOM. memory.current also counts page
+# cache, which the kernel reclaims instead of killing anything -- writing
+# 7 GB of safetensors and tarring 4.8 GB of GGUF pushed memory.current to
+# 29 GiB on a run whose anonymous memory was a fraction of that, and reading
+# that as "202 MiB from an OOM" was wrong (2026-10-18). Report both.
 ( while true; do
     USED=$(cat /sys/fs/cgroup/memory.current 2>/dev/null || cat /sys/fs/cgroup/memory/memory.usage_in_bytes 2>/dev/null || echo 0)
     LIM=$(cat /sys/fs/cgroup/memory.max 2>/dev/null || cat /sys/fs/cgroup/memory/memory.limit_in_bytes 2>/dev/null || echo 0)
-    echo "[mem] $(date -u +%H:%M:%S) rss_cgroup=$((USED/1024/1024))MiB limit=$((LIM/1024/1024))MiB procs=$(ls /proc | grep -c '^[0-9]')"
+    ANON=$(awk '/^anon /{print $2; found=1} END{if(!found) print ""}' /sys/fs/cgroup/memory.stat 2>/dev/null)
+    if [ -z "${ANON:-}" ]; then ANON=$(awk '/^rss /{print $2}' /sys/fs/cgroup/memory/memory.stat 2>/dev/null); fi
+    echo "[mem] $(date -u +%H:%M:%S) anon=$(( ${ANON:-0} /1024/1024))MiB current=$((USED/1024/1024))MiB limit=$((LIM/1024/1024))MiB procs=$(ls /proc | grep -c '^[0-9]')"
     sleep 30
   done ) &
 MONITOR=$!
