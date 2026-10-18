@@ -234,6 +234,24 @@ def main() -> int:
         ),
     )
     stats = trainer.train()
+
+    # Release everything training needed BEFORE merging. save_pretrained_merged
+    # materialises a full fp16 copy of the model, and on a 300-row smoke the
+    # cgroup peaked at 29,361 MiB -- 202 MiB under the smallest pod RAM seen
+    # (29,563 MiB; other hosts give 58 GiB, and which one you get is luck).
+    # The full run decodes 384 drawings rather than 196, about 1.1 GB more,
+    # which would put that peak over the limit. The trainer, the dataset and
+    # the decoded images are all dead weight by this point.
+    import gc
+
+    import torch
+
+    del trainer
+    dataset.clear()
+    images.clear()
+    gc.collect()
+    torch.cuda.empty_cache()
+
     out = Path(a.out)
     model.save_pretrained(out / "lora"); tokenizer.save_pretrained(out / "lora")
     model.save_pretrained_merged(str(out / "merged-16bit"), tokenizer, save_method="merged_16bit")
