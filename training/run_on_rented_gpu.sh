@@ -8,7 +8,9 @@ DATA=${DATA:-draftfm-train-synth-v1}
 OUT=${OUT:-results}          # put it on the persistent volume (e.g. OUT=/workspace/results-full) on RunPod
 mkdir -p "$OUT"
 if [ ! -d "$DATA" ]; then
-  if [ -f "$DATA.zip" ]; then unzip -q "$DATA.zip" -d "$DATA"
+  # python's zipfile, because `unzip` is not in every CUDA base image and a
+  # run that dies on a missing unzip still costs a pod.
+  if [ -f "$DATA.zip" ]; then python -c "import sys,zipfile; zipfile.ZipFile(sys.argv[1]).extractall(sys.argv[2])" "$DATA.zip" "$DATA"
   else  # inside a clone of bves-drafting: regenerate the synthetic set from the repo itself (seconds, no upload)
     PYTHONPATH=../src python -m bves_drafting.draftfm export-train --out "$DATA" --work-dir data/work --extra-seeds 25:400
   fi
