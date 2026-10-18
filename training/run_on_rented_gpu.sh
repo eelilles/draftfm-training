@@ -23,6 +23,12 @@ nvidia-smi --query-gpu=name,memory.total --format=csv
 # Non-interactive ssh does not read ~/.bashrc, which is why a hand-driven session never hit this
 # (2026-10-18, first unattended run: exit 1 at the unsloth install).
 export PIP_BREAK_SYSTEM_PACKAGES=1
+# Python block-buffers stdout when it is a file rather than a tty, so the
+# trainer's loss lines sat in an 8 KB buffer while tqdm (stderr) streamed
+# freely: a 879-step run reached step 49 with the string "loss" appearing
+# nowhere in the log, and the history only flushed when training ended.
+# Unbuffered costs nothing here and makes the log usable while it runs.
+export PYTHONUNBUFFERED=1
 # Keep the image's own torch/CUDA build: no torch pin, no extras (the cu124-torch250 extra downgraded
 # torch 2.8->2.5 and broke torchao on the first run, 2026-10-17).
 python -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda)"
