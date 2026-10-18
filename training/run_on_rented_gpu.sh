@@ -67,7 +67,11 @@ echo "limiting compile workers to 1; cpus=$CPUS"
 # 7 GB of safetensors and tarring 4.8 GB of GGUF pushed memory.current to
 # 29 GiB on a run whose anonymous memory was a fraction of that, and reading
 # that as "202 MiB from an OOM" was wrong (2026-10-18). Report both.
-( while true; do
+( set +eu   # a monitor must not be able to kill itself: these pods are cgroup v1,
+            # so every v2 read below fails, and under the inherited errexit the
+            # first failing command substitution silently ended the subshell on
+            # its first iteration -- a whole run with no [mem] line (2026-10-18).
+  while true; do
     USED=$(cat /sys/fs/cgroup/memory.current 2>/dev/null || cat /sys/fs/cgroup/memory/memory.usage_in_bytes 2>/dev/null || echo 0)
     LIM=$(cat /sys/fs/cgroup/memory.max 2>/dev/null || cat /sys/fs/cgroup/memory/memory.limit_in_bytes 2>/dev/null || echo 0)
     ANON=$(awk '/^anon /{print $2; found=1} END{if(!found) print ""}' /sys/fs/cgroup/memory.stat 2>/dev/null)
