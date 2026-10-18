@@ -31,7 +31,7 @@ python -c "import torch; print('torch', torch.__version__, 'cuda', torch.version
 TORCH_VER=$(python -c "import torch; print(torch.__version__.split('+')[0])")
 TV_VER=$(python -c "import torchvision; print(torchvision.__version__.split('+')[0])" 2>/dev/null || true)
 printf 'torch==%s\n' "$TORCH_VER" > /tmp/draftfm-constraints.txt
-[ -n "$TV_VER" ] && printf 'torchvision==%s\n' "$TV_VER" >> /tmp/draftfm-constraints.txt
+if [ -n "$TV_VER" ]; then printf 'torchvision==%s\n' "$TV_VER" >> /tmp/draftfm-constraints.txt; fi
 pip uninstall -y -q xformers torchao 2>/dev/null || true
 pip install -q --upgrade --upgrade-strategy only-if-needed -c /tmp/draftfm-constraints.txt unsloth unsloth_zoo trl datasets pillow
 python -c "import unsloth, torch; print('unsloth', unsloth.__version__, 'torch', torch.__version__); assert torch.__version__.startswith('$TORCH_VER'), 'torch was changed by pip'"
@@ -51,9 +51,13 @@ except Exception:
     pass
 PYEOF
 export PYTHONPATH="$PWD:${PYTHONPATH:-}"
+# Every one of these is written as an if, not as `test && assign`. Under
+# `set -e` a bare `[ ... ] && x=y` whose test is false IS a failing statement
+# and aborts the script -- which is exactly how the 2026-10-18 10:00 run died,
+# silently, right after the unsloth install and before the first echo.
 CPUS=$(nproc --all 2>/dev/null || echo 8)
-QUOTA=$(cat /sys/fs/cgroup/cpu.max 2>/dev/null | awk '{if ($1!="max") print int($1/$2)}')
-[ -n "${QUOTA:-}" ] && CPUS=$QUOTA
+QUOTA=$( (cat /sys/fs/cgroup/cpu.max 2>/dev/null || true) | awk '{if ($1!="max") print int($1/$2)}' || true)
+if [ -n "${QUOTA:-}" ] && [ "${QUOTA}" -gt 0 ] 2>/dev/null; then CPUS=$QUOTA; fi
 echo "limiting compile workers to 1; cpus=$CPUS"
 
 # Memory monitor: the first OOM kill (exit 137) left no record of how close the run had been.
@@ -67,7 +71,17 @@ echo "limiting compile workers to 1; cpus=$CPUS"
 MONITOR=$!
 trap 'kill $MONITOR 2>/dev/null || true' EXIT
 
-taskset -c 0-$((CPUS-1)) python finetune_qwen25vl_qlora.py --data "$DATA" --out "$OUT" --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
+# taskset is a convenience, not a requirement: a container whose cpuset is not 0..N-1 makes it
+# fail outright, and losing the whole run to a CPU-pinning nicety would be absurd. Probe it.
+PIN=""
+if command -v taskset >/dev/null 2>&1 && taskset -c 0-$((CPUS-1)) true 2>/dev/null; then
+  PIN="taskset -c 0-$((CPUS-1))"
+else
+  echo "taskset unavailable or cpuset is not 0-$((CPUS-1)); relying on the env vars alone"
+fi
+echo "=== training starts ==="
+$PIN python finetune_qwen25vl_qlora.py --data "$DATA" --out "$OUT" --max-rows ${SMOKE_ROWS:-0} ${EXTRA_ARGS:-}
+echo "=== training done ==="
 # GGUF for Ollama
 [ -d llama.cpp ] || git clone --depth 1 https://github.com/ggml-org/llama.cpp
 # llama.cpp's requirements-convert_hf_to_gguf.txt pins torch~=2.11, so installing it under the
