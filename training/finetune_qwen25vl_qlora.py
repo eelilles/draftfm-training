@@ -180,6 +180,39 @@ def main() -> int:
     if framed:
         print(f"pixel-framed tasks ({', '.join(framed)}) are trained at the drawing's own size -- no resize.")
 
+    # --- the second guard -------------------------------------------------
+    # The first guard stops *this script* from resizing. It cannot stop the
+    # processor: Qwen2.5-VL's image processor runs its own smart_resize,
+    # bounded by min_pixels/max_pixels in preprocessor_config.json, and a
+    # build that ships a small max_pixels would reintroduce exactly the
+    # 10-17 bug without a line of this file changing. So ask the processor
+    # what it actually does to a real sheet and compare.
+    if framed and images:
+        sample = next(iter(images.values()))
+        try:
+            grid = tokenizer.image_processor(images=[sample], return_tensors="pt")["image_grid_thw"][0]
+            seen_h, seen_w = int(grid[1]) * 14, int(grid[2]) * 14
+        except Exception as exc:  # noqa: BLE001 - an unknown processor shape is a warning, not a verdict
+            print(f"WARNING: could not ask the processor what it shows the model ({exc}); "
+                  "if coordinates look learned-but-scaled, start here")
+        else:
+            sx, sy = seen_w / sample.width, seen_h / sample.height
+            tokens = int(grid[1]) * int(grid[2]) // 4
+            print(f"processor shows {sample.width}x{sample.height} as {seen_w}x{seen_h} "
+                  f"(scale {sx:.4f} x {sy:.4f}, ~{tokens} image tokens)")
+            if abs(sx - 1) > 0.02 or abs(sy - 1) > 0.02:
+                raise SystemExit(
+                    f"the image processor rescales the drawing by {sx:.3f} x {sy:.3f} before the model sees it,\n"
+                    "but the coordinates in prompts and answers are in the drawing's own frame. Raise max_pixels\n"
+                    f"in the processor config to at least {sample.width * sample.height} "
+                    "(or re-export the set in the frame the processor produces)."
+                )
+            if tokens + 256 > a.max_seq:
+                raise SystemExit(
+                    f"{tokens} image tokens plus the prompt will not fit in --max-seq {a.max_seq}; "
+                    f"use at least {tokens + 256}."
+                )
+
     FastVisionModel.for_training(model)
     trainer = SFTTrainer(
         # resize="max" is Unsloth's *no-resize* setting (it sets image_size to
