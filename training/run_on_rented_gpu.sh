@@ -4,7 +4,7 @@
 # Produces results/: lora/, merged-16bit/, draftfm-3b.gguf, train_run.json. Download $OUT/ and destroy the box.
 set -euo pipefail
 cd "$(dirname "$0")"
-DATA=${DATA:-draftfm-train-synth-v1}
+DATA=${DATA:-draftfm-train-synth-v2-diverse}   # run 3: diverse values, majority-answer gate 5 % (v1 kept for comparison)
 OUT=${OUT:-results}          # put it on the persistent volume (e.g. OUT=/workspace/results-full) on RunPod
 mkdir -p "$OUT"
 if [ ! -d "$DATA" ]; then

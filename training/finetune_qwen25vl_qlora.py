@@ -102,7 +102,8 @@ def main() -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--base", default="unsloth/Qwen2.5-VL-3B-Instruct-bnb-4bit")
     ap.add_argument("--epochs", type=float, default=1.0)
-    ap.add_argument("--lr", type=float, default=2e-4)
+    ap.add_argument("--lr", type=float, default=1e-4, help="Run 3 default 1e-4 (run 2: 2e-4).")
+    ap.add_argument("--vision-layers", action="store_true", help="Also train the vision tower (run 2 did; run 3 does not, to keep the base model's reading).")
     ap.add_argument("--batch", type=int, default=2)
     ap.add_argument("--grad-accum", type=int, default=8)
     ap.add_argument("--rank", type=int, default=16)
@@ -156,7 +157,7 @@ def main() -> int:
 
     model, tokenizer = FastVisionModel.from_pretrained(a.base, load_in_4bit=True, use_gradient_checkpointing="unsloth", max_seq_length=a.max_seq)
     model = FastVisionModel.get_peft_model(
-        model, finetune_vision_layers=True, finetune_language_layers=True,
+        model, finetune_vision_layers=a.vision_layers, finetune_language_layers=True,
         finetune_attention_modules=True, finetune_mlp_modules=True,
         r=a.rank, lora_alpha=a.rank, lora_dropout=0, bias="none", random_state=a.seed,
     )
@@ -256,7 +257,7 @@ def main() -> int:
     model.save_pretrained(out / "lora"); tokenizer.save_pretrained(out / "lora")
     model.save_pretrained_merged(str(out / "merged-16bit"), tokenizer, save_method="merged_16bit")
     (out / "train_run.json").write_text(json.dumps({
-        "base": a.base, "rows": len(rows), "image_width": a.image_width, "max_seq": a.max_seq, "epochs": a.epochs, "lr": a.lr, "rank": a.rank,
+        "base": a.base, "rows": len(rows), "image_width": a.image_width, "max_seq": a.max_seq, "epochs": a.epochs, "lr": a.lr, "vision_layers": a.vision_layers, "rank": a.rank,
         # Recorded so a later table can say what the model was shown, not
         # only what it was trained on: this is the field that was wrong on
         # 2026-10-17 and the report did not make it obvious.

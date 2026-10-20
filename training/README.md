@@ -80,3 +80,19 @@ Synthetic foundation plans teach the task format and the relate/localise
 skills the exam measures; whether that transfers to real BVES sheets is
 measured afterwards by running the exam on a local overlay of real bundles
 (`draftfm factory` on real DXFs, inside the boundary).
+
+## Run 3 (branch `run3-diverse`, 2026-10-19)
+
+Run 2 lost the base model's reading (dimension_value ~80 % -> 20.9 %, title_block_field ~85 % -> 68.6 %)
+while gaining localisation. The v1 set lets a model score by answer frequency: 6 distinct dimension values
+(the top one alone answers 28 %), 3 constant title strings answering 50 % of title questions. Run 3 changes
+the data and keeps the model's eyes:
+
+* `draftfm-train-synth-v2-diverse.zip` — 14,752 rows from 356 sheets of the `diverse` generator profile
+  (bays 2.4–12 m in 25 mm steps, 2–5 footing types of 600–3600, 13 sheet titles, 12 scales, random sheet
+  numbers, initials, revisions, project names). Exported with `--max-majority 0.05 --cap-majority`: no
+  task's most common answer covers more than 5 % of its rows (`majority_baseline` in the card).
+  The Golden v1 train sheets are left out; the frozen test split is unchanged, so the exam is comparable.
+* Trainer: `--lr 1e-4` (was 2e-4) and the vision tower frozen (`--vision-layers` to turn it back on).
+
+Launch: `python tools/rent_and_train.py --commit run3-diverse` (from bves-drafting).

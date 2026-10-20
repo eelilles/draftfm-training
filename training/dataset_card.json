@@ -1,14 +1,14 @@
 {
  "by_data_class": {
-  "synthetic": 14062
+  "synthetic": 14752
  },
  "by_task": {
-  "dimension_value": 1903,
-  "grid_position": 2644,
-  "member_schedule": 3272,
-  "stale_references": 930,
-  "text_localisation": 3041,
-  "title_block_field": 2272
+  "dimension_value": 2159,
+  "grid_position": 2371,
+  "member_schedule": 3982,
+  "stale_references": 1256,
+  "text_localisation": 2848,
+  "title_block_field": 2136
  },
  "dropped_items": 0,
  "excluded_test_source_ids": [
@@ -35,13 +35,53 @@
  ],
  "excluded_test_sources": 20,
  "extra_seeds": [
-  25,
-  400
+  1000,
+  1335
  ],
- "format": "draftfm-train/1",
+ "format": "draftfm-train/2",
  "golden_set": "golden-v1",
- "jsonl_sha256": "191d8ffe7d427bb46226d91259a5dfe92c87b9472be424addfb4aaa129672817",
- "out_dir": "training/data/draftfm-train-synth-v1",
+ "golden_train_included": false,
+ "jsonl_sha256": "e95ccf2bd3372761bb136fdf4865429db686db715c1f2302dc71c813072953fe",
+ "majority_baseline": {
+  "dimension_value": {
+   "distinct": 240,
+   "rows": 2159,
+   "top_answer": "2650",
+   "top_share": 0.0167
+  },
+  "grid_position": {
+   "distinct": 566,
+   "rows": 2371,
+   "top_answer": "{\"offset\": \"0\", \"orientation\": \"vertical\"}",
+   "top_share": 0.0447
+  },
+  "member_schedule": {
+   "distinct": 362,
+   "rows": 3982,
+   "top_answer": "{\"mark\": \"F6\", \"size\": \"650x650\"}",
+   "top_share": 0.0161
+  },
+  "stale_references": {
+   "distinct": 266,
+   "rows": 1256,
+   "top_answer": "{\"must_update\": [\"TEXT:17\"]}",
+   "top_share": 0.0151
+  },
+  "text_localisation": {
+   "distinct": 1448,
+   "rows": 2848,
+   "top_answer": "(bbox)",
+   "top_share": 0.0011
+  },
+  "title_block_field": {
+   "distinct": 706,
+   "rows": 2136,
+   "top_answer": "{\"value\": \"1/4\\\"=1'-0\\\"\"}",
+   "top_share": 0.0211
+  }
+ },
+ "max_majority_gate": 0.05,
+ "out_dir": "/sessions/rcw-01xbbgq7ba8ruewqfjisjulq/r3-v2/draftfm-train-synth-v2-diverse",
  "prompt_contract": "identical to draftfm.exam.VisionSolver; grade with `draftfm exam --solver ollama`",
  "render_spec": {
   "dpi": 100,
@@ -51,8 +91,10 @@
    297.0
   ]
  },
- "rows": 14062,
- "sources": 385,
+ "rows": 14752,
+ "rows_dropped_by_majority_cap": 500,
+ "sources": 356,
+ "synth_profile": "diverse",
  "versions": {
   "encoder": "draftfm-structural/2",
   "factory": "draftfm-factory/1",
